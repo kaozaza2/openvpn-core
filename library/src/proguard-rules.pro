@@ -1,0 +1,6 @@
+-keep class net.openvpn.openvpn.SWIGTYPE_p_std__string {*;}
+-keep class net.openvpn.openvpn.SWIGTYPE_p_std__vectorT_openvpn__ClientAPI__KeyValue_t {*;}
+-keep class net.openvpn.openvpn.SWIGTYPE_p_std__vectorT_std__string_t {*;}
+-keep class net.openvpn.openvpn.ovpncli {*;}
+-keep class net.openvpn.openvpn.ovpncliJNI {*;}
+-keep class net.openvpn.openvpn.ClientAPI_* {*;}

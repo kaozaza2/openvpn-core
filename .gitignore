@@ -1,0 +1,15 @@
+# content of .gitignore
+.gradle
+*.iml
+.idea/*
+/build
+app/build/
+app/output
+app/.cxx/
+app/app.iml
+/captures
+tree.txt
+/local.properties
+.DS_Store
+.externalNativeBuild
+.cxx

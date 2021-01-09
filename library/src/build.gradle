@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "net.openvpn.openvpn"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 5891
+        versionName "3.2.4"
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+}
