@@ -22,23 +22,22 @@ public class Util
     public static String format_bytes(final long lng, final boolean b) {
         int n = b ? 1000 : 1024;
         StringBuilder sb = new StringBuilder();
-        if (lng < n) {
-            sb.append(lng);
-            sb.append(" B");
-            return sb.toString();
-        }
+        if (lng < n) return sb.append(lng).append(" B").toString();
         String s = b ? "kMGTPE" : "KMGTPE";
-        sb.append(s.charAt(n4 - 1));
-        if (!b) {
-            sb.append("i");
-        }
-        double pow = Math.pow(n, Math.log(lng) / Math.log(n));
+        int index = Math.round(Math.log(lng) / Math.log(n));
+        sb.append(s.charAt(index - 1));
+        if (!b) sb.append("i");
+        double pow = Math.pow(n, index);
         return String.format(Locale.US, "%.1f %sB", lng / pow, sb.toString());
     }
     
     private static long getIpStringAsInt(final String s) {
-        final String[] split = s.split("\\.");
-        return (Long.parseLong(split[0]) << 24) + 0L + (Integer.parseInt(split[1]) << 16) + (Integer.parseInt(split[2]) << 8) + Integer.parseInt(split[3]);
+        long out = 0;
+        String[] split = s.split("\\.");
+        for (int i=0,j=24;i<4;i++,j-=8) {
+            out += Long.parseLong(split[i])<<j;
+        }
+        return out;
     }
     
     public static String getNetworkAddress(final String s, final int n) {
@@ -53,17 +52,11 @@ public class Util
             System.loadLibrary("ovpncli");
             ClientAPI_OpenVPNClient.init_process();
             String crypto_self_test = ClientAPI_OpenVPNClient.crypto_self_test();
-            StringBuilder sb = new StringBuilder();
-            sb.append("ovpncli crypto test: ");
-            sb.append(crypto_self_test);
-            Log.d(LOADER_TAG, sb.toString());
+            Log.d(LOADER_TAG, "ovpncli crypto test: " + crypto_self_test);
             return true;
         }
         catch (UnsatisfiedLinkError e) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("ovpncli so load error: ");
-            sb.append(e.getMessage());
-            Log.e(LOADER_TAG, sb.toString(), e);
+            Log.e(LOADER_TAG, "ovpncli so load error: " + e.getMessage(), e);
             return false;
         }
     }
