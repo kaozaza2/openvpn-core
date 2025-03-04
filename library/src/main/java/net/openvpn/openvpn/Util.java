@@ -1,12 +1,13 @@
 package net.openvpn.openvpn;
 
 import android.util.Log;
+
 import java.util.Locale;
 
 public class Util
 {
     private static final String LOADER_TAG = "NativeLibLoader";
-    private static final char[] hexArray = = "0123456789ABCDEF".toCharArray();
+    private static final char[] hexArray = "0123456789ABCDEF".toCharArray();
 
     public static String bytesToHex(byte[] array) {
         char[] value = new char[array.length * 2];
@@ -24,7 +25,7 @@ public class Util
         StringBuilder sb = new StringBuilder();
         if (lng < n) return sb.append(lng).append(" B").toString();
         String s = b ? "kMGTPE" : "KMGTPE";
-        int index = Math.round(Math.log(lng) / Math.log(n));
+        int index = (int) Math.round(Math.log(lng) / Math.log(n));
         sb.append(s.charAt(index - 1));
         if (!b) sb.append("i");
         double pow = Math.pow(n, index);
@@ -50,9 +51,9 @@ public class Util
         try {
             Log.d(LOADER_TAG, "Loading ovpncli...");
             System.loadLibrary("ovpncli");
-            ClientAPI_OpenVPNClient.init_process();
-            String crypto_self_test = ClientAPI_OpenVPNClient.crypto_self_test();
-            Log.d(LOADER_TAG, "ovpncli crypto test: " + crypto_self_test);
+            //ClientAPI_OpenVPNClient.init_process();
+            //String crypto_self_test = ClientAPI_OpenVPNClient.crypto_self_test();
+            //Log.d(LOADER_TAG, "ovpncli crypto test: " + crypto_self_test);
             return true;
         }
         catch (UnsatisfiedLinkError e) {
