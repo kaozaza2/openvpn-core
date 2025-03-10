@@ -1,6 +1,6 @@
 Sample library based on Open VPN 3.6.0 for Android
 
-Containing he latest .so files and JNI wrapper.
+Containing the latest .so files and JNI wrapper.
 
 If VPN is blocking the internet add the following code into the vpn builder:
 
