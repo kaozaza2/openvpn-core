@@ -1,4 +1,4 @@
-Sample library based on Open VPN 3.6.0
+Sample library based on Open VPN 3.6.0 for Android
 
 Containing he latest .so files and JNI wrapper.
 
